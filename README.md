@@ -13,7 +13,11 @@ Datacure is a project designed to streamline data validation and cleaning proces
 
 Evaluates the overall structure of the DataFrame to prevent downstream failures
 
--   `check_empty_table` - flags completely empty tables
+-   `check_table_structure` 
+    - Detecting if the table is completely empty (no rows or no columns).
+    - Checking column headers for spaces or special characters that may break code.
+    - Identifying leading or trailing spaces within string cells across the table.
+    - Flagging inconsistencies that indicate improper loading or formatting.
 
 While standard libraries like Pandas provide tools to transform data, **Datacure** provides the rules to validate it. By focusing on data cleaning - structural integrity, column consistency, and value range constraints - it allows developers to build more resilient data pipelines with less boilerplate code.
 
