@@ -33,7 +33,7 @@ Evaluates whether categorical and datetime columns in a DataFrame conform to pre
     - Returns either a success message or detailed diagnostics for columns that fail validation.
 
 
-While standard libraries like Pandas provide tools to transform data, **Datacure** provides the rules to validate it. By focusing on data cleaning - structural integrity, column consistency, and value range constraints - it allows developers to build more resilient data pipelines with less boilerplate code.
+
 
 **Numeric value checks**
 Numeric value checks ensure that numerical columns contain valid and meaningful values. These checks help detect outliers, impossible values, and violations of constraints that should logically apply to the data.
@@ -49,6 +49,8 @@ Column-level checks inspect each column individually to understand data quality 
    - Checks data type consistency across each column
    - Calculates the number and percentage of missing values
    - Reports the number of unique values to identify high-cardinality or low-variance columns
+
+While standard libraries like Pandas provide tools to transform data, **Datacure** provides the rules to validate it. By focusing on data cleaning - structural integrity, column consistency, and value range constraints - it allows developers to build more resilient data pipelines with less boilerplate code.
 
 ## Get started
 
