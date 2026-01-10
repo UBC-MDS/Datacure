@@ -32,6 +32,21 @@ Evaluates whether categorical and datetime columns in a DataFrame conform to pre
     - Validates that one or more datetime columns conform to a specified datetime format.
     - Returns either a success message or detailed diagnostics for columns that fail validation.
 
+**Numeric EDA Plotting**
+Provides a set of exploratory data analysis (EDA) focused on numeric columns. These functions will assist in quickly assessing distribution shapes, detect outliers and evaluate correlations
+
+-   `plot_numeric_distributions(df)`
+    - Generates histogram‑based distribution plots for all numeric columns.
+    - Helps identify skewness, modality, and potential outliers across variables.
+
+-   `plot_numeric_boxplots(df)`
+    - Produces boxplots for each numeric column to highlight central tendency and spread.
+    - Effective for detecting extreme values, inconsistent scaling, and data quality issues.
+
+-   `plot_correlation_heatmap(df)`
+    - Computes pairwise correlations among numeric variables and visualizes them in a heatmap.
+    - Helps uncover linear relationships, multicollinearity, and feature redundancy.
+
 
 
 
