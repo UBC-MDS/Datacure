@@ -19,6 +19,20 @@ Evaluates the overall structure of the DataFrame to prevent downstream failures
     - Identifying leading or trailing spaces within string cells across the table.
     - Flagging inconsistencies that indicate improper loading or formatting.
 
+
+**Categorical and Datetime Validation**
+
+Evaluates whether categorical and datetime columns in a DataFrame conform to predefined schemas to prevent errors in analysis and modeling.
+
+-   `check_categories(df, column, allowed_categories)`
+    - Validates that all values in a specified categorical column belong to a predefined set of allowed categories.
+    - Reports invalid category values, their row indices, and a pass/fail status.
+
+-   `check_datetime_format(df, columns, datetime_format)`
+    - Validates that one or more datetime columns conform to a specified datetime format.
+    - Returns either a success message or detailed diagnostics for columns that fail validation.
+
+
 While standard libraries like Pandas provide tools to transform data, **Datacure** provides the rules to validate it. By focusing on data cleaning - structural integrity, column consistency, and value range constraints - it allows developers to build more resilient data pipelines with less boilerplate code.
 
 ## Get started
@@ -34,8 +48,27 @@ TODO: Add a brief example of how to use the package to this section
 To use datacure in your code:
 
 ``` python
->>> import datacure
->>> datacure.hello_world()
+import pandas as pd
+from datacure import check_categories, check_datetime_format
+
+df = pd.DataFrame({
+    "program": ["academic", "general", "unknown"],
+    "start_date": ["2023-01-01", "2023-02-01", "01-03-2023"]
+})
+
+# Check categorical column
+result_categorical = check_categories(
+    df, 
+    column="program",
+    allowed_categories=["academic", "general", "vocational"]
+)
+
+# Check datetime format
+result_date = check_datetime_format(
+    df,
+    columns=["start_date"],
+    datetime_format="%Y-%m-%d"
+)
 ```
 
 ## Contributors
