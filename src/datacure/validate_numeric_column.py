@@ -79,4 +79,74 @@ def validate_numeric_column(
     - It is designed to be simple to test using small DataFrames with known
       invalid values.
     """
-    pass
+     # --- Defensive checks ---
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("df must be a pandas DataFrame.")
+
+    if column not in df.columns:
+        raise KeyError(f"Column '{column}' not found in DataFrame.")
+
+    # Check that the column is numeric
+    if not pd.api.types.is_numeric_dtype(df[column]):
+        raise TypeError(
+            f"Column '{column}' must be numeric, "
+            f"but has dtype {df[column].dtype}."
+        )
+
+    # Work on a copy of the column to avoid modifying df
+    series = df[column]
+
+    # Ignore missing values
+    non_missing = series.dropna()
+
+    # --- Build violation masks ---
+    violation_reasons = {}
+
+    if not allow_negative:
+        neg_mask = non_missing < 0
+        violation_reasons["negative"] = neg_mask
+
+    if min_value is not None:
+        min_mask = non_missing < min_value
+        violation_reasons["below_min"] = min_mask
+
+    if max_value is not None:
+        max_mask = non_missing > max_value
+        violation_reasons["above_max"] = max_mask
+
+    if not violation_reasons:
+        # No rules to validate against
+        return pd.DataFrame(columns=list(df.columns) + ["violation_reason"])
+
+    # Combine all violation masks
+    combined_mask = pd.Series(False, index=non_missing.index)
+    for mask in violation_reasons.values():
+        combined_mask = combined_mask | mask
+
+    violating_indices = combined_mask[combined_mask].index
+
+    if len(violating_indices) == 0:
+        return pd.DataFrame(columns=list(df.columns) + ["violation_reason"])
+
+    # --- Build violation_reason column ---
+    reasons = []
+    for idx in violating_indices:
+        row_reasons = []
+        value = series.loc[idx]
+
+        if not allow_negative and value < 0:
+            row_reasons.append("negative value not allowed")
+
+        if min_value is not None and value < min_value:
+            row_reasons.append(f"value below minimum ({min_value})")
+
+        if max_value is not None and value > max_value:
+            row_reasons.append(f"value above maximum ({max_value})")
+
+        reasons.append("; ".join(row_reasons))
+
+    # --- Construct output DataFrame ---
+    violations_df = df.loc[violating_indices].copy()
+    violations_df["violation_reason"] = reasons
+
+    return violations_df
