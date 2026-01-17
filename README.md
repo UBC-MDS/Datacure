@@ -75,22 +75,15 @@ To use datacure in your code:
 
 ``` python
 import pandas as pd
-from datacure import check_categories, check_datetime_format
+from datacure import validate_datetime_schema
 
 df = pd.DataFrame({
     "program": ["academic", "general", "unknown"],
     "start_date": ["2023-01-01", "2023-02-01", "01-03-2023"]
 })
 
-# Check categorical column
-result_categorical = check_categories(
-    df, 
-    column="program",
-    allowed_categories=["academic", "general", "vocational"]
-)
-
-# Check datetime format
-result_date = check_datetime_format(
+# Validate datetime format
+result = validate_datetime_schema(
     df,
     columns=["start_date"],
     datetime_format="%Y-%m-%d"
