@@ -24,13 +24,16 @@ Evaluates the overall structure of the DataFrame to prevent downstream failures
 
 Evaluates whether categorical and datetime columns in a DataFrame conform to predefined schemas to prevent errors in analysis and modeling.
 
--   `check_categories(df, column, allowed_categories)`
-    - Validates that all values in a specified categorical column belong to a predefined set of allowed categories.
-    - Reports invalid category values, their row indices, and a pass/fail status.
+-   `validate_categorical_schema(df, column, allowed_categories)`
+    - Checks whether all non-missing values in a categorical column belong to a predefined set of allowed categories.
+    - Identifies and reports invalid category values at the row level.
+    - Returns a pass/fail validation status along with a structured table of invalid records.
 
--   `check_datetime_format(df, columns, datetime_format)`
-    - Validates that one or more datetime columns conform to a specified datetime format.
-    - Returns either a success message or detailed diagnostics for columns that fail validation.
+
+-   `validate_datetime_schema(df, columns, datetime_format, coerce_invalid=False)`
+    - Checks whether datetime columns conform to a specified datetime format.
+    - Identifies and reports invalid datetime values at the row level.
+    -  Optionally (`coerce_invalid=True`) returns a copy of the DataFrame where valid values are converted to specified datetime type.
 
 **Numeric EDA Plotting**
 
