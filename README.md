@@ -11,13 +11,15 @@ Datacure is a project designed to streamline data validation and cleaning proces
 
 **Table Level Integrity**
 
-Evaluates the overall structure of the DataFrame to prevent downstream failures
+Robustly load and clean tabular data from either a CSV file (via a local path or URL) or an existing pandas DataFrame. Evaluates the overall structure of the DataFrame to prevent downstream failures
 
--   `check_table_structure` 
-    - Detecting if the table is completely empty (no rows or no columns).
-    - Checking column headers for spaces or special characters that may break code.
-    - Identifying leading or trailing spaces within string cells across the table.
-    - Flagging inconsistencies that indicate improper loading or formatting.
+-   `load_or_validate_source`
+    - Input flexibility: Accepts either a CSV file (from a local path or URL) or an existing pandas DataFrame.
+    - Automatic delimiter detection: For CSVs, detects the delimiter using a sample of the file and handles common formatting issues.
+    - Corruption checks: Identifies inconsistencies such as mismatched column counts and ensures the first row is a proper header rather than data.
+    - Column header cleaning: Strips leading and trailing whitespace, replaces internal spaces with underscores, substitutes illegal characters with underscores.
+    - Data cleaning: Trims leading and trailing whitespace from all string values in the table.
+    - Change reporting: Returns a ChangeReport object summarizing all modifications made during loading and cleaning.
 
 
 **Categorical and Datetime Validation**
