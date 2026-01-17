@@ -63,3 +63,38 @@ def test_empty_allowed_categories():
     df = pd.DataFrame({"color": ["red"]}, index=[0])
     with pytest.raises(ValueError):
         validate_categorical_schema(df, "color", [])
+
+# case 7: Invalid column argument
+@pytest.mark.parametrize("bad_column", [None, "", "   ", 123])
+def test_validate_categorical_schema_invalid_column_arg(bad_column):
+    df = pd.DataFrame({"color": ["red"]})
+    with pytest.raises(ValueError):
+        validate_categorical_schema(df, bad_column, ["red"])
+
+
+# case 8: allowed_categories is None
+def test_validate_categorical_schema_none_allowed_categories():
+    df = pd.DataFrame({"color": ["red"]})
+    with pytest.raises(ValueError):
+        validate_categorical_schema(df, "color", None)
+
+
+# case 9: allowed_categories empty
+def test_validate_categorical_schema_empty_allowed_categories():
+    df = pd.DataFrame({"color": ["red"]})
+    with pytest.raises(ValueError):
+        validate_categorical_schema(df, "color", [])
+
+
+# case 10: allowed_categories as set / tuple
+def test_validate_categorical_schema_iterable_allowed_categories():
+    df = pd.DataFrame({"color": ["red", "blue"]})
+
+    out_set = validate_categorical_schema(df, "color", {"red", "blue"})
+    out_tuple = validate_categorical_schema(df, "color", ("red", "blue"))
+
+    expected = pd.DataFrame(columns=["index", "column", "raw_value"])
+    assert out_set["status"] == "pass"
+    assert out_tuple["status"] == "pass"
+    pdt.assert_frame_equal(out_set["invalid_records"], expected)
+    pdt.assert_frame_equal(out_tuple["invalid_records"], expected)
