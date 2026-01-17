@@ -1,5 +1,5 @@
 
-from src.datacure.plots import plot_numeric_distributions
+from datacure.plots import plot_numeric_distributions
 
 import pytest
 import pandas as pd
