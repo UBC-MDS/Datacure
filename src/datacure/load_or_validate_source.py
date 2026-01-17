@@ -65,6 +65,7 @@ def is_date(s):
         return True
     except:
         return False
+    
 #------------------------------------------------------------
 
 def load_or_validate_source(
@@ -145,12 +146,13 @@ def load_or_validate_source(
         # Identify basic corruption
         lines = sample.splitlines()[:10]
         counts = [l.count(delim) for l in lines if l]
+        print(delim, counts)
         if max(counts) - min(counts) > 2:
             raise DataLoadError("Inconsistent column counts - possible corruption")
         
         # First row header or data?
         # if any(ch.isdigit() for ch in lines[0]):            
-        if any(ch.isdigit() for ch in lines[0]) or any(is_date(cell) for cell in lines[0].split(delim)):
+        if any(ch.isdigit() for ch in lines[0]) or any(is_date(ch) for ch in lines[0].split(delim)):
             raise DataLoadError("First row looks like data instead of header")
         try:
             df = pd.read_csv(io.StringIO(text), delimiter=delim)
@@ -192,7 +194,8 @@ def load_or_validate_source(
     trimmed = 0
     for c in df.select_dtypes(include=["object"]).columns:
         before = df[c].copy()
-        df[c] = df[c].astype(str).str.strip()
+        #df[c] = df[c].astype(str).str.strip()
+        df[c] = df[c].apply(lambda x: x.strip() if isinstance(x, str) else x)
         trimmed += (before != df[c]).sum()
 
     report.trimmed_cells = int(trimmed)

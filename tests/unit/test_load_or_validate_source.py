@@ -41,11 +41,22 @@ def test_access_file_path():
     assert not df.empty
     assert rpt.delimiter == ","
 
+def test_access_unsupported_file_type():
+    """Check if code returns error for unsupported file type."""
+    sample_path = get_path("excel_data.xlsx")
+    with pytest.raises(DataLoadError, match="Unable to read local file"):
+        load_or_validate_source(source=sample_path)
+   
 def test_download_file():
     """Check if code can 'download' a file from URL"""
     df, rpt = load_or_validate_source(source="https://raw.githubusercontent.com/ttimbers/canlang/master/inst/extdata/victoria_lang.tsv")
     assert not df.empty
     assert rpt.delimiter == "\t"
+
+def test_download_from_non_existent_url():
+    """Check if code can 'download' a file from non existing URL"""
+    with pytest.raises(DataLoadError, match="Unable to download file"):
+        load_or_validate_source(source="https://testurl")
 
 def test_delimiter_detection():
     """Check that non-comma delimiters are detected correctly."""
@@ -55,11 +66,11 @@ def test_delimiter_detection():
     assert df.shape[1] > 1
 
 
-# def test_column_count_inconsistent():
-#     """Check for DataLoadError if columns are inconsistent."""
-#     sample_path = get_path("shifted_columns.csv")
-#     with pytest.raises(DataLoadError, match="Inconsistent column counts"):
-#         load_or_validate_source(sample_path)
+def test_column_count_inconsistent():
+    """Check for DataLoadError if columns are inconsistent."""
+    sample_path = get_path("shifted_columns.csv")
+    with pytest.raises(DataLoadError, match="Inconsistent column counts"):
+        load_or_validate_source(source=sample_path)
 
 
 def test_empty_dataframe_or_file():
