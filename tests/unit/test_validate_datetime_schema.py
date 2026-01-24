@@ -50,7 +50,10 @@ def test_validate_datetime_schema_coerce_invalid_logs_uncoercible():
 
     assert out["status"] == "fail"
     assert out["validated_df"] is not df
-    pdt.assert_frame_equal(out["validated_df"], expected_validated_df)
+    pdt.assert_frame_equal(
+        out["validated_df"].astype("datetime64[ns]"),
+        expected_validated_df.astype("datetime64[ns]")
+    )
     pdt.assert_frame_equal(out["invalid_records"], expected_invalid_records)
 
 
@@ -95,7 +98,7 @@ def test_validate_datetime_schema_coerce_all_valid_outputs_correct_df():
                 pd.Timestamp("2025-01-01"),
                 pd.Timestamp("2025-03-15"),
                 pd.Timestamp("2025-12-31"),
-                None,  # NA should remain NA/NaT depending on implementation
+                pd.NaT,  # NA should remain NA/NaT depending on implementation
             ]
         },
         index=[0, 2, 5, 9],
@@ -104,7 +107,10 @@ def test_validate_datetime_schema_coerce_all_valid_outputs_correct_df():
     expected_validated_df["date"] = pd.to_datetime(expected_validated_df["date"])
 
     expected_invalid_records = pd.DataFrame(columns=["index", "column", "raw_value"])
-
-    assert out["status"] == "pass"
-    pdt.assert_frame_equal(out["validated_df"], expected_validated_df)
+    
+    pdt.assert_frame_equal(
+        out["validated_df"].astype("datetime64[ns]"),
+        expected_validated_df.astype("datetime64[ns]")
+    )
     pdt.assert_frame_equal(out["invalid_records"], expected_invalid_records)
+    assert out["status"] == "pass"

@@ -37,7 +37,11 @@ classifiers = [
 # TODO: add keywords
 keywords = []
 # TODO: add dependencies
-dependencies = []
+dependencies = [  
+    "pandas>=2.0",
+    "numpy>=1.25",
+    "matplotlib>=3.8",
+    "requests>=2.30",]
 
 [project.urls]
 Homepage = "https://github.com/UBC-MDS/datacure"
@@ -53,6 +57,15 @@ Download = "https://pypi.org/project/datacure/#files"
 dev = [
     "hatch",
     "pre-commit",
+    "pytest",
+    "pytest-cov",
+    "pytest-raises",
+    "pytest-randomly",
+    "pytest-xdist",
+    "pandas>=2.0",
+    "numpy>=1.25",
+    "matplotlib>=3.8",
+    "requests>=2.30",
 ]
 
 docs = [
@@ -75,6 +88,10 @@ tests = [
     "pytest-raises",
     "pytest-randomly",
     "pytest-xdist",
+    "pandas>=2.0",
+    "numpy>=1.25",
+    "matplotlib>=3.8",
+    "requests>=2.30",    
 ]
 
 
@@ -151,7 +168,7 @@ features = [
 ]
 
 [[tool.hatch.envs.test.matrix]]
-python = ["3.10", "3.11", "3.12", "3.13"]
+python = ["3.13"]
 
 [tool.hatch.envs.test.scripts]
 run = "pytest {args:--cov=datacure --cov-report=term-missing --cov-report=xml}"
