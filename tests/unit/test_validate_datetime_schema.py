@@ -114,3 +114,63 @@ def test_validate_datetime_schema_coerce_all_valid_outputs_correct_df():
     )
     pdt.assert_frame_equal(out["invalid_records"], expected_invalid_records)
     assert out["status"] == "pass"
+
+
+# case 8: Multiple columns validation where one column contains invalid values
+def test_validate_datetime_schema_multiple_columns_one_invalid():
+    df = pd.DataFrame(
+        {
+            "start_date": ["2025-01-01", "2025-02-01"],
+            "end_date": ["2025-01-31", "invalid-date"],
+        },
+        index=[0, 1],
+    )
+
+    out = validate_datetime_schema(
+        df, ["start_date", "end_date"], "%Y-%m-%d", coerce_invalid=False
+    )
+
+    assert out["status"] == "fail"
+    assert len(out["invalid_records"]) == 1
+    assert out["invalid_records"].iloc[0]["column"] == "end_date"
+    assert out["invalid_records"].iloc[0]["raw_value"] == "invalid-date"
+
+# case 9: Multiple invalid datetime values in the same column
+def test_validate_datetime_schema_multiple_invalid_rows():
+    df = pd.DataFrame(
+        {"date": ["2025-01-01", "bad", "2025-99-99", None]},
+        index=[0, 1, 2, 3],
+    )
+
+    out = validate_datetime_schema(df, ["date"], "%Y-%m-%d", coerce_invalid=False)
+
+    assert out["status"] == "fail"
+    assert len(out["invalid_records"]) == 2
+    assert set(out["invalid_records"]["index"]) == {1, 2}
+
+# case 10: All values invalid with coercion enabled
+def test_validate_datetime_schema_coerce_all_invalid():
+    df = pd.DataFrame(
+        {"date": ["bad", "also-bad"]},
+        index=[5, 6],
+    )
+
+    out = validate_datetime_schema(df, ["date"], "%Y-%m-%d", coerce_invalid=True)
+
+    expected_df = pd.DataFrame(
+        {"date": [pd.NaT, pd.NaT]},
+        index=[5, 6],
+    )
+
+    assert out["status"] == "fail"
+    pdt.assert_frame_equal(out["validated_df"], expected_df)
+    assert len(out["invalid_records"]) == 2
+
+# case 11: Empty DataFrame should pass validation
+def test_validate_datetime_schema_empty_dataframe():
+    df = pd.DataFrame({"date": []})
+
+    out = validate_datetime_schema(df, ["date"], "%Y-%m-%d")
+
+    assert out["status"] == "pass"
+    assert out["invalid_records"].empty
