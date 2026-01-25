@@ -2,14 +2,12 @@ import pandas as pd
 
 
 def validate_categorical_schema(df, column, allowed_categories):
-
     """
     Validate that a categorical column conforms to a predefined allowed-value schema.
 
-
-    This function checks whether all non-missing values in `df[column]` are 
-    contained in `allowed_categories`. Missing values (NaN/None) are ignored. 
-    Values not in `allowed_categories` are reported in `invalid_records`.
+    This function checks whether all non-missing values in ``df[column]`` are
+    contained in ``allowed_categories``. Missing values (NaN/None) are ignored.
+    Values not in ``allowed_categories`` are reported in ``invalid_records``.
 
     Parameters
     ----------
@@ -18,16 +16,19 @@ def validate_categorical_schema(df, column, allowed_categories):
     column : str
         Name of the categorical column to validate.
     allowed_categories : Sequence
-        An iterable of allowed category values (e.g., list, set, tuple). 
+        An iterable of allowed category values (e.g., list, set, tuple).
 
     Returns
     -------
     dict
-            A validation summary containing:
-            - status: {'pass', 'fail'}
-            - invalid_records: pandas.DataFrame
-                A DataFrame with columns ['index', 'column', 'raw_value'].
+        A validation summary containing:
+
+        status : {'pass', 'fail'}
+            Overall validation status.
+        invalid_records : pandas.DataFrame
+            A DataFrame with columns ['index', 'column', 'raw_value'].
     """
+
     # check input
     if df is None or df.empty:
         raise ValueError("`df` must be a non-empty pandas DataFrame.")
