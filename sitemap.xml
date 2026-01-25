@@ -2,46 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_group20_datacure/CODE_OF_CONDUCT.html</loc>
-    <lastmod>2026-01-25T00:24:09.712Z</lastmod>
+    <lastmod>2026-01-25T00:39:53.194Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_group20_datacure/reference/load_or_validate_source.load_or_validate_source.html</loc>
-    <lastmod>2026-01-25T00:24:09.719Z</lastmod>
+    <lastmod>2026-01-25T00:39:53.201Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_group20_datacure/reference/validate_datetime_schema.validate_datetime_schema.html</loc>
-    <lastmod>2026-01-25T00:24:09.719Z</lastmod>
+    <lastmod>2026-01-25T00:39:53.202Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_group20_datacure/reference/validate_numeric_column.validate_numeric_column.html</loc>
-    <lastmod>2026-01-25T00:24:09.720Z</lastmod>
+    <lastmod>2026-01-25T00:39:53.202Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_group20_datacure/CONTRIBUTING.html</loc>
-    <lastmod>2026-01-25T00:24:09.712Z</lastmod>
+    <lastmod>2026-01-25T00:39:53.194Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_group20_datacure/CHANGELOG.html</loc>
-    <lastmod>2026-01-25T00:24:09.712Z</lastmod>
+    <lastmod>2026-01-25T00:39:53.194Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_group20_datacure/DEVELOPMENT.html</loc>
-    <lastmod>2026-01-25T00:24:09.712Z</lastmod>
+    <lastmod>2026-01-25T00:39:53.195Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_group20_datacure/index.html</loc>
-    <lastmod>2026-01-25T00:24:09.719Z</lastmod>
+    <lastmod>2026-01-25T00:39:53.201Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_group20_datacure/reference/index.html</loc>
-    <lastmod>2026-01-25T00:24:28.624Z</lastmod>
+    <lastmod>2026-01-25T00:40:14.149Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_group20_datacure/reference/validate_categorical_schema.validate_categorical_schema.html</loc>
-    <lastmod>2026-01-25T00:24:09.719Z</lastmod>
+    <lastmod>2026-01-25T00:39:53.202Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_group20_datacure/reference/plots.plot_numeric_distributions.html</loc>
-    <lastmod>2026-01-25T00:24:09.719Z</lastmod>
+    <lastmod>2026-01-25T00:39:53.202Z</lastmod>
   </url>
 </urlset>
