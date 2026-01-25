@@ -180,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <colgroup>
 <col style="width: 5%">
 <col style="width: 6%">
-<col style="width: 83%">
+<col style="width: 84%">
 <col style="width: 4%">
 </colgroup>
 <thead>
@@ -207,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td>datetime_format</td>
 <td>str</td>
-<td>Expected datetime format string used for strict validation (e.g., ‘%Y-%m-%d’).</td>
+<td>Expected datetime format string used for strict validation (e.g., <code>"%Y-%m-%d"</code>).</td>
 <td><em>required</em></td>
 </tr>
 <tr class="even">
@@ -223,9 +223,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="doc-section doc-section-returns anchored" data-anchor-id="returns">Returns</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 0%">
-<col style="width: 0%">
-<col style="width: 98%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 97%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -238,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td></td>
 <td>dict</td>
-<td>A validation summary containing: - status : {‘pass’, ‘fail’} Overall validation status across all specified columns. <code>'pass'</code> indicates that no invalid values were detected; <code>'fail'</code> indicates that at least one invalid value was found. - validated_df : pandas.DataFrame A copy of the input DataFrame. If <code>coerce_invalid=True</code>, the specified datetime columns are converted to pandas datetime dtype (with invalid values set to <code>NaT</code>). - invalid_records : pandas.DataFrame A tidy DataFrame listing all invalid datetime values with columns: - index : index labels from <code>df.index</code> where validation failed - column : name of the datetime column containing the invalid value - raw_value : original value that failed validation An empty DataFrame indicates that no invalid values were detected.</td>
+<td>A validation summary containing: status : {‘pass’, ‘fail’} Overall validation status across all specified columns. validated_df : pandas.DataFrame A copy of the input DataFrame. If <code>coerce_invalid=True</code>, the specified datetime columns are converted to pandas datetime dtype. invalid_records : pandas.DataFrame A tidy DataFrame listing all invalid datetime values with columns: - index : index labels from <code>df.index</code> where validation failed - column : name of the datetime column containing the invalid value - raw_value : original value that failed validation An empty DataFrame indicates that no invalid values were detected.</td>
 </tr>
 </tbody>
 </table>
