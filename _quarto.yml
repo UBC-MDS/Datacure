@@ -1,0 +1,36 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Datacure"
+  navbar:
+    search: true
+    left:
+      - text: Home
+        href: index.qmd
+      - text: References
+        href: reference/index.qmd
+        
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+
+quartodoc:
+  package: datacure
+  dir: reference
+  sections:
+    - title: Datacure Functions
+      desc: Functions to help you with data validation, data cleaning and plotting.
+      contents:
+        - load_or_validate_source.load_or_validate_source
+        - validate_categorical_schema.validate_categorical_schema
+        - validate_datetime_schema.validate_datetime_schema
+        - validate_numeric_column.validate_numeric_column
+        - plots.plot_numeric_distributions
+

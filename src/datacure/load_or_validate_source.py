@@ -192,7 +192,7 @@ def load_or_validate_source(
 
     # ---------- Trim table cell values ----------
     trimmed = 0
-    for c in df.select_dtypes(include=["object"]).columns:
+    for c in df.select_dtypes(include=["object", "string"]).columns:
         before = df[c].copy()
         #df[c] = df[c].astype(str).str.strip()
         df[c] = df[c].apply(lambda x: x.strip() if isinstance(x, str) else x)

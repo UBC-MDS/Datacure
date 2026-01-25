@@ -1,0 +1,46 @@
+# load_or_validate_source.load_or_validate_source { #datacure.load_or_validate_source.load_or_validate_source }
+
+```python
+load_or_validate_source.load_or_validate_source(
+    dataframe=None,
+    source=None,
+    expected_min_cols=1,
+    sample_size=2048,
+)
+```
+
+Load a CSV from a path/URL or validate and clean a provided DataFrame.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name              | Type                     | Description                                                                                                                | Default   |
+|-------------------|--------------------------|----------------------------------------------------------------------------------------------------------------------------|-----------|
+| dataframe         | Optional\[pd.DataFrame\] | An already-loaded DataFrame to validate and clean.                                                                         | `None`    |
+| source            | str                      | Path or URL to a CSV file. HTTP/HTTPS URLs and local filesystem paths are supported.                                       | `None`    |
+| expected_min_cols | int                      | Minimum number of columns expected after loading (default: 2). Used to detect probable delimiter or corruption issues.     | `1`       |
+| sample_size       | int                      | Number of characters to sample from the source when sniffing the delimiter and detecting basic corruption (default: 2048). | `2048`    |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name   | Type                                    | Description                                                                                                                                                                                                                                                                                                                                                                                              |
+|--------|-----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|        | tuple\[pandas.DataFrame, ChangeReport\] | df : pandas.DataFrame     Cleaned and validated DataFrame. Cleaning includes normalizing     column headers (strip, whitespace -> underscore, replace illegal     chars with underscores) and trimming string cells. report : ChangeReport     Report of changes and metadata (detected delimiter, renamed     columns mapping, counts of trimmed cells and illegal-char fixes,     shape before/after). |
+
+## Raises {.doc-section .doc-section-raises}
+
+| Name   | Type          | Description                                                                                                                                                                                                                                                                                                |
+|--------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|        | TypeError     | If `source` is neither a string nor a pandas.DataFrame.                                                                                                                                                                                                                                                    |
+|        | DataLoadError | On I/O or parsing failures and validation errors, including: - unable to read/download source - inconsistent column counts in sample (possible corruption) - first row looks like data instead of header - pandas failed to parse CSV - resulting DataFrame is empty or has fewer than `expected_min_cols` |
+
+## Notes {.doc-section .doc-section-notes}
+
+- Delimiter detection uses csv.Sniffer on a sample; falls back to ',' on failure.
+- When `source` is a DataFrame, it is copied and validated; no I/O is performed.
+
+## Examples {.doc-section .doc-section-examples}
+
+```python
+>>> df, rpt = load_or_validate_source(source="data.csv")
+>>> df, rpt = load_or_validate_source(dataframe=existing_df)
+```

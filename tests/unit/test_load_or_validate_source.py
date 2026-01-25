@@ -114,6 +114,6 @@ def test_trim_data_cells():
     sample_path = get_path("illegal_header.csv")
     df, rpt = load_or_validate_source(source=sample_path)
     # Leading/trailing spaces removed from cell values
-    for col in df.select_dtypes(include=["object"]).columns:
+    for col in df.select_dtypes(include=["object", "string"]).columns:
         for val in df[col]:
             assert val == val.strip()

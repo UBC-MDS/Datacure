@@ -1,0 +1,19 @@
+name: dsci_524_proj_env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - jupyterlab
+  - ipykernel
+  - conda-lock
+  - hatch
+  - copier
+  - pandas
+  - pip
+  - altair
+  - numpy
+  - matplotlib
+  - requests
+  - pytest
+  - pytest-cov
+

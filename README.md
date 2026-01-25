@@ -47,36 +47,58 @@ Provides a set of exploratory data analysis (EDA) focused on numeric columns. Th
 
 
 **Numeric value checks**
+
 Numeric value checks ensure that numerical columns contain valid and meaningful values. These checks help detect outliers, impossible values, and violations of constraints that should logically apply to the data.
 -  `validate_numeric_column(df, column, min_value,max_value,allow_negative)`
    - Verifys that numeric values fall within an expected range.
    - Detects negative values where they are not allowed
    - Identifies values that violate domain-specific boundaries.
    
-**Column-level checks**
-Column-level checks inspect each column individually to understand data quality and readiness for cleaning or modeling. These checks evaluate the composition, completeness, and consistency of columns.
--  ` summarize_column_quality(df,target_column)`
-   - Confirms the required columns (e.g., the target column) are present.
-   - Checks data type consistency across each column
-   - Calculates the number and percentage of missing values
-   - Reports the number of unique values to identify high-cardinality or low-variance columns
-
 While standard libraries like Pandas provide tools to transform data, **Datacure** provides the rules to validate it. By focusing on data cleaning - structural integrity, column consistency, and value range constraints - it allows developers to build more resilient data pipelines with less boilerplate code.
 
-## Get started
-
-You can install this package into your preferred Python environment using pip:
-
+## Setting up the Development Environment
+1. Clone the repository to your local machine by opening your terminal and run the following commands:
 ``` bash
-$ pip install datacure
+git clone https://github.com/UBC-MDS/DSCI_524_group20_datacure.git
+cd DSCI_524_group20_datacure
+``` 
+2. Create the conda environment from `environment.yml`:
+``` bash
+conda env create -f environment.yaml
 ```
-Inorder to run the tests successfully, use the command below:
+3. Activate the environment:
+``` bash
+conda activate dsci_524_proj_env 
+```
 
+## Installing the package
+You can install this package into your preferred Python environment using pip:
+``` bash
+$ pip install -e .
+```
+
+## Running Tests
+You can run tests to validate all functions in the package using pytest:
 ``` bash
 $ pytest -v
 ```
-To use datacure in your code:
+-v provides a verbose output showing the names of all tests and if they passed or not.
 
+## Build Documentation
+### Option 1 (Recommended): Build using Hatch
+This option installs all required documentation dependencies automatically and builds the documentation:
+``` bash
+hatch run docs:build
+```
+### Option 2 (Optional): Live preview locally (requires Quarto installed)
+If not already installed, you can install quarto from (here)[!https://quarto.org/docs/get-started/].
+To generate the API reference pages and preview the documentation website run:
+``` bash
+quartodoc build --watch
+quarto preview
+```
+
+## Example use:
 ``` python
 import pandas as pd
 from datacure import validate_datetime_schema
@@ -95,16 +117,11 @@ result = validate_datetime_schema(
 ```
 
 ## Contributors
-
 -   Jose Davila
-
 -   Ssemakula Peter Wasswa
-
 -   Yanxin Liang
-
 -   Shruti Sasi
 
 ## Copyright
-
 -   Copyright © 2026 Jose Davila , Ssemakula Peter Wasswa , Yanxin Liang , Shruti Sasi.
 -   Free software distributed under the [MIT License](./LICENSE).

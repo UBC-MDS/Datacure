@@ -1,0 +1,24 @@
+# plots.plot_numeric_distributions { #datacure.plots.plot_numeric_distributions }
+
+```python
+plots.plot_numeric_distributions(df)
+```
+
+Plot distribution histograms for all numeric columns.
+
+Generates a grid of histogram plots to help visualize the
+distribution, skewness, and potential outliers in each
+numeric column. This function is intended as a exploratory 
+tool for understanding the shape of the data.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name   | Type             | Description                                   | Default    |
+|--------|------------------|-----------------------------------------------|------------|
+| df     | pandas.DataFrame | The input dataset containing numeric columns. | _required_ |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name   | Type   | Description                                       |
+|--------|--------|---------------------------------------------------|
+|        | None   | Displays histogram plots for each numeric column. |

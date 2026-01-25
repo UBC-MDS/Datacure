@@ -1,0 +1,30 @@
+# validate_categorical_schema.validate_categorical_schema { #datacure.validate_categorical_schema.validate_categorical_schema }
+
+```python
+validate_categorical_schema.validate_categorical_schema(
+    df,
+    column,
+    allowed_categories,
+)
+```
+
+Validate that a categorical column conforms to a predefined allowed-value schema.
+
+
+This function checks whether all non-missing values in `df[column]` are 
+contained in `allowed_categories`. Missing values (NaN/None) are ignored. 
+Values not in `allowed_categories` are reported in `invalid_records`.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name               | Type             | Description                                                      | Default    |
+|--------------------|------------------|------------------------------------------------------------------|------------|
+| df                 | pandas.DataFrame | The DataFrame containing the categorical column.                 | _required_ |
+| column             | str              | Name of the categorical column to validate.                      | _required_ |
+| allowed_categories | Sequence         | An iterable of allowed category values (e.g., list, set, tuple). | _required_ |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name   | Type   | Description                                                                                                                                                    |
+|--------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|        | dict   | A validation summary containing: - status: {'pass', 'fail'} - invalid_records: pandas.DataFrame     A DataFrame with columns ['index', 'column', 'raw_value']. |

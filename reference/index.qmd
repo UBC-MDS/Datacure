@@ -1,0 +1,13 @@
+# Function reference {.doc .doc-index}
+
+## Datacure Functions
+
+Functions to help you with data validation, data cleaning and plotting.
+
+| | |
+| --- | --- |
+| [load_or_validate_source.load_or_validate_source](load_or_validate_source.load_or_validate_source.qmd#datacure.load_or_validate_source.load_or_validate_source) | Load a CSV from a path/URL or validate and clean a provided DataFrame. |
+| [validate_categorical_schema.validate_categorical_schema](validate_categorical_schema.validate_categorical_schema.qmd#datacure.validate_categorical_schema.validate_categorical_schema) | Validate that a categorical column conforms to a predefined allowed-value schema. |
+| [validate_datetime_schema.validate_datetime_schema](validate_datetime_schema.validate_datetime_schema.qmd#datacure.validate_datetime_schema.validate_datetime_schema) | Validate that specified columns follow a given datetime format. |
+| [validate_numeric_column.validate_numeric_column](validate_numeric_column.validate_numeric_column.qmd#datacure.validate_numeric_column.validate_numeric_column) | Validate a numeric column against logical and domain-specific constraints. |
+| [plots.plot_numeric_distributions](plots.plot_numeric_distributions.qmd#datacure.plots.plot_numeric_distributions) | Plot distribution histograms for all numeric columns. |

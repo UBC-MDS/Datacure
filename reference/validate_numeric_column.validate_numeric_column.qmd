@@ -1,0 +1,64 @@
+# validate_numeric_column.validate_numeric_column { #datacure.validate_numeric_column.validate_numeric_column }
+
+```python
+validate_numeric_column.validate_numeric_column(
+    df,
+    column,
+    min_value=None,
+    max_value=None,
+    allow_negative=True,
+)
+```
+
+Validate a numeric column against logical and domain-specific constraints.
+
+This function performs diagnostic checks on a specified numeric column
+in a pandas DataFrame. It identifies values that fall outside an expected
+range or violate negative-value rules. The function does not modify the
+original DataFrame; instead, it returns a new DataFrame containing only
+the rows where violations occurred, along with a textual description of
+the issue found. This makes the function suitable for automated data
+validation pipelines, testing, and reporting.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name           | Type             | Description                                                                                                                                         | Default    |
+|----------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|------------|
+| df             | pandas.DataFrame | The input DataFrame containing the numeric column to check.                                                                                         | _required_ |
+| column         | str              | The name of the numeric column to be validated. The function will raise a KeyError if this column is not found in the DataFrame.                    | _required_ |
+| min_value      | float            | The minimum allowed value (inclusive). If provided, any value in the column that is strictly less than this threshold is considered a violation.    | `None`     |
+| max_value      | float            | The maximum allowed value (inclusive). If provided, any value in the column that is strictly greater than this threshold is considered a violation. | `None`     |
+| allow_negative | bool             | When set to False, any negative numeric value will be treated as a violation, regardless of the specified `min_value`.                              | `True`     |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name   | Type             | Description                                                                                                                                                                                                                                                                                                                 |
+|--------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|        | pandas.DataFrame | A DataFrame containing all rows where at least one validation rule was broken. The returned DataFrame will contain all original columns plus an additional column named `"violation_reason"` describing the type of constraint that was violated. If the column contains no invalid values, an empty DataFrame is returned. |
+
+## Raises {.doc-section .doc-section-raises}
+
+| Name   | Type      | Description                                                                                    |
+|--------|-----------|------------------------------------------------------------------------------------------------|
+|        | KeyError  | If the specified `column` is not present in the input DataFrame.                               |
+|        | TypeError | If the specified column cannot be interpreted as numeric (e.g., contains non-numeric strings). |
+
+## Examples {.doc-section .doc-section-examples}
+
+```python
+>>> violations = validate_numeric_column(
+...     df,
+...     column="age",
+...     min_value=0,
+...     max_value=120,
+...     allow_negative=False
+... )
+>>> violations.empty
+True
+```
+
+## Notes {.doc-section .doc-section-notes}
+
+- This function is purely diagnostic and performs no in-place modification.
+- It is designed to be simple to test using small DataFrames with known
+  invalid values.
