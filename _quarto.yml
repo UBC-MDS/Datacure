@@ -7,8 +7,6 @@ website:
   navbar:
     search: true
     left:
-      - text: Home
-        href: index.qmd
       - text: References
         href: reference/index.qmd
         

@@ -1,9 +1,6 @@
 ---
-title: "Home"
+title: ""
+format: html
 ---
 
-# API Reference
-
-Go to the API reference page here:
-
-[API Reference](reference/index.qmd)
+{{< include README.md >}}

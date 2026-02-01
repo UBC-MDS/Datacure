@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Home – Datacure</title>
+<title>Datacure</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -93,10 +128,6 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./reference/index.html"> 
 <span class="menu-text">References</span></a>
   </li>  
@@ -116,38 +147,175 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#api-reference" id="toc-api-reference" class="nav-link active" data-scroll-target="#api-reference">API Reference</a></li>
+  <li><a href="#welcome-to-datacure" id="toc-welcome-to-datacure" class="nav-link active" data-scroll-target="#welcome-to-datacure">Welcome to Datacure</a>
+  <ul class="collapse">
+  <li><a href="#installation-for-users" id="toc-installation-for-users" class="nav-link" data-scroll-target="#installation-for-users">Installation for Users</a></li>
+  <li><a href="#setting-up-the-development-environment" id="toc-setting-up-the-development-environment" class="nav-link" data-scroll-target="#setting-up-the-development-environment">Setting up the Development Environment</a></li>
+  <li><a href="#installing-the-package" id="toc-installing-the-package" class="nav-link" data-scroll-target="#installing-the-package">Installing the package</a></li>
+  <li><a href="#running-tests" id="toc-running-tests" class="nav-link" data-scroll-target="#running-tests">Running Tests</a></li>
+  <li><a href="#build-documentation" id="toc-build-documentation" class="nav-link" data-scroll-target="#build-documentation">Build Documentation</a>
+  <ul class="collapse">
+  <li><a href="#option-1-recommended-build-using-hatch" id="toc-option-1-recommended-build-using-hatch" class="nav-link" data-scroll-target="#option-1-recommended-build-using-hatch">Option 1 (Recommended): Build using Hatch</a></li>
+  <li><a href="#option-2-optional-live-preview-locally-requires-quarto-installed" id="toc-option-2-optional-live-preview-locally-requires-quarto-installed" class="nav-link" data-scroll-target="#option-2-optional-live-preview-locally-requires-quarto-installed">Option 2 (Optional): Live preview locally (requires Quarto installed)</a></li>
+  </ul></li>
+  <li><a href="#example-use" id="toc-example-use" class="nav-link" data-scroll-target="#example-use">Example use:</a></li>
+  <li><a href="#contributors" id="toc-contributors" class="nav-link" data-scroll-target="#contributors">Contributors</a></li>
+  <li><a href="#copyright" id="toc-copyright" class="nav-link" data-scroll-target="#copyright">Copyright</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Home</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
+<section id="welcome-to-datacure" class="level1">
+<h1>Welcome to Datacure</h1>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td>Documentation</td>
+<td><a href="https://ubc-mds.github.io/DSCI_524_group20_datacure/"><img src="https://img.shields.io/badge/docs-gh--pages-blue.png" class="img-fluid" alt="Docs"></a></td>
+</tr>
+<tr class="even">
+<td>CI/CD</td>
+<td><a href="https://github.com/UBC-MDS/DSCI_524_group20_datacure/actions/workflows/build.yml"><img src="https://github.com/UBC-MDS/DSCI_524_group20_datacure/actions/workflows/build.yml/badge.svg" class="img-fluid" alt="CI"></a> <a href="https://codecov.io/github/ubc-mds/dsci_524_group20_datacure"><img src="https://codecov.io/github/ubc-mds/dsci_524_group20_datacure/branch/codecov_implementation/graph/badge.svg?token=qqHGXk6De9" class="img-fluid" alt="codecov"></a></td>
+</tr>
+<tr class="odd">
+<td>Package</td>
+<td><a href="https://test.pypi.org/project/datacure/"><img src="https://img.shields.io/badge/TestPyPI-datacure-orange.png" class="img-fluid" alt="Test PyPI Version"></a> <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.10+-blue.svg" class="img-fluid" alt="Supported Python Versions"></a></td>
+</tr>
+<tr class="even">
+<td>Meta</td>
+<td><a href="./CODE_OF_CONDUCT.html"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" class="img-fluid" alt="Code of Conduct"></a></td>
+</tr>
+</tbody>
+</table>
+<p>Datacure is a project designed to streamline data validation and cleaning process. It provides a multi-layered approach moving from high-level structural checks to granular value-level verification to achieve data integrity. By catching data errors early, it ensures the datasets is model-ready.</p>
+<p><strong>Table Level Integrity</strong></p>
+<p>Robustly load and clean tabular data from either a CSV file (via a local path or URL) or an existing pandas DataFrame. Evaluates the overall structure of the DataFrame to prevent downstream failures</p>
+<ul>
+<li><code>load_or_validate_source(df, source, expected_min_cols, sample_size)</code>
+<ul>
+<li>Input flexibility: Accepts either a CSV file (from a local path or URL) or an existing pandas DataFrame.</li>
+<li>Automatic delimiter detection: For CSVs, detects the delimiter using a sample of the file and handles common formatting issues.</li>
+<li>Corruption checks: Identifies inconsistencies such as mismatched column counts and ensures the first row is a proper header rather than data.</li>
+<li>Column header cleaning: Strips leading and trailing whitespace, replaces internal spaces with underscores, substitutes illegal characters with underscores.</li>
+<li>Data cleaning: Trims leading and trailing whitespace from all string values in the table.</li>
+<li>Change reporting: Returns a ChangeReport object summarizing all modifications made during loading and cleaning.</li>
+</ul></li>
+</ul>
+<p><strong>Categorical and Datetime Validation</strong></p>
+<p>Evaluates whether categorical and datetime columns in a DataFrame conform to predefined schemas to prevent errors in analysis and modeling.</p>
+<ul>
+<li><code>validate_categorical_schema(df, column, allowed_categories)</code>
+<ul>
+<li>Checks whether all non-missing values in a categorical column belong to a predefined set of allowed categories.</li>
+<li>Identifies and reports invalid category values at the row level.</li>
+<li>Returns a pass/fail validation status along with a structured table of invalid records.</li>
+</ul></li>
+<li><code>validate_datetime_schema(df, columns, datetime_format, coerce_invalid=False)</code>
+<ul>
+<li>Checks whether datetime columns conform to a specified datetime format.</li>
+<li>Identifies and reports invalid datetime values at the row level.</li>
+<li>Optionally (<code>coerce_invalid=True</code>) returns a copy of the DataFrame where valid values are converted to specified datetime type.</li>
+</ul></li>
+</ul>
+<p><strong>Numeric EDA Plotting</strong></p>
+<p>Provides a set of exploratory data analysis (EDA) focused on numeric columns. These functions will assist in quickly assessing distribution shapes, detect outliers and evaluate correlations</p>
+<ul>
+<li><code>plot_numeric_distributions(df)</code>
+<ul>
+<li>Generates histogram‑based distribution plots for all numeric columns.</li>
+<li>Helps identify skewness, modality, and potential outliers across variables.</li>
+</ul></li>
+</ul>
+<p><strong>Numeric value checks</strong></p>
+<p>Numeric value checks ensure that numerical columns contain valid and meaningful values. These checks help detect outliers, impossible values, and violations of constraints that should logically apply to the data. - <code>validate_numeric_column(df, column, min_value,max_value,allow_negative)</code> - Verifys that numeric values fall within an expected range. - Detects negative values where they are not allowed - Identifies values that violate domain-specific boundaries.</p>
+<p>While standard libraries like Pandas provide tools to transform data, <strong>Datacure</strong> provides the rules to validate it. By focusing on data cleaning - structural integrity, column consistency, and value range constraints - it allows developers to build more resilient data pipelines with less boilerplate code.</p>
+<section id="installation-for-users" class="level2">
+<h2 class="anchored" data-anchor-id="installation-for-users">Installation for Users</h2>
+<p>Install the package form Test PyPI running the below command in your terminal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-i</span> https://test.pypi.org/simple/ datacure</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="setting-up-the-development-environment" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-the-development-environment">Setting up the Development Environment</h2>
+<ol type="1">
+<li>Clone the repository to your local machine by opening your terminal and run the following commands:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/UBC-MDS/DSCI_524_group20_datacure.git</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> DSCI_524_group20_datacure</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="2" type="1">
+<li>Create the conda environment from <code>environment.yml</code>:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li>Activate the environment:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate dsci_524_proj_env </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="installing-the-package" class="level2">
+<h2 class="anchored" data-anchor-id="installing-the-package">Installing the package</h2>
+<p>You can install this package into your preferred Python environment using pip:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="running-tests" class="level2">
+<h2 class="anchored" data-anchor-id="running-tests">Running Tests</h2>
+<p>You can run tests to validate all functions in the package using pytest:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>-v provides a verbose output showing the names of all tests and if they passed or not.</p>
+</section>
+<section id="build-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="build-documentation">Build Documentation</h2>
+<section id="option-1-recommended-build-using-hatch" class="level3">
+<h3 class="anchored" data-anchor-id="option-1-recommended-build-using-hatch">Option 1 (Recommended): Build using Hatch</h3>
+<p>This option installs all required documentation dependencies automatically and builds the documentation:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hatch</span> run docs:build</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="option-2-optional-live-preview-locally-requires-quarto-installed" class="level3">
+<h3 class="anchored" data-anchor-id="option-2-optional-live-preview-locally-requires-quarto-installed">Option 2 (Optional): Live preview locally (requires Quarto installed)</h3>
+<p>If not already installed, you can install quarto from <a href="https://quarto.org/docs/get-started/">link</a>. To generate the API reference pages and preview the documentation website run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quartodoc</span> build <span class="at">--watch</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="example-use" class="level2">
+<h2 class="anchored" data-anchor-id="example-use">Example use:</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datacure <span class="im">import</span> validate_datetime_schema</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"program"</span>: [<span class="st">"academic"</span>, <span class="st">"general"</span>, <span class="st">"unknown"</span>],</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"start_date"</span>: [<span class="st">"2023-01-01"</span>, <span class="st">"2023-02-01"</span>, <span class="st">"01-03-2023"</span>]</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Validate datetime format</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> validate_datetime_schema(</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    df,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>[<span class="st">"start_date"</span>],</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    datetime_format<span class="op">=</span><span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st">"</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="contributors" class="level2">
+<h2 class="anchored" data-anchor-id="contributors">Contributors</h2>
+<ul>
+<li>Jose Davila</li>
+<li>Ssemakula Peter Wasswa</li>
+<li>Yanxin Liang</li>
+<li>Shruti Sasi</li>
+</ul>
+</section>
+<section id="copyright" class="level2">
+<h2 class="anchored" data-anchor-id="copyright">Copyright</h2>
+<ul>
+<li>Copyright © 2026 Jose Davila , Ssemakula Peter Wasswa , Yanxin Liang , Shruti Sasi.</li>
+<li>Free software distributed under the <a href="./LICENSE">MIT License</a>.</li>
+</ul>
 
 
-</header>
-
-
-<section id="api-reference" class="level1">
-<h1>API Reference</h1>
-<p>Go to the API reference page here:</p>
-<p><a href="./reference/index.html">API Reference</a></p>
-
-
+</section>
 </section>
 
 </main> <!-- /main -->

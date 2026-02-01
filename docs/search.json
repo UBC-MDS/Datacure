@@ -107,9 +107,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Home",
+    "title": "Welcome to Datacure",
     "section": "",
-    "text": "API Reference\nGo to the API reference page here:\nAPI Reference"
+    "text": "Documentation\n\n\n\nCI/CD\n \n\n\nPackage\n \n\n\nMeta\n\n\n\n\nDatacure is a project designed to streamline data validation and cleaning process. It provides a multi-layered approach moving from high-level structural checks to granular value-level verification to achieve data integrity. By catching data errors early, it ensures the datasets is model-ready.\nTable Level Integrity\nRobustly load and clean tabular data from either a CSV file (via a local path or URL) or an existing pandas DataFrame. Evaluates the overall structure of the DataFrame to prevent downstream failures\n\nload_or_validate_source(df, source, expected_min_cols, sample_size)\n\nInput flexibility: Accepts either a CSV file (from a local path or URL) or an existing pandas DataFrame.\nAutomatic delimiter detection: For CSVs, detects the delimiter using a sample of the file and handles common formatting issues.\nCorruption checks: Identifies inconsistencies such as mismatched column counts and ensures the first row is a proper header rather than data.\nColumn header cleaning: Strips leading and trailing whitespace, replaces internal spaces with underscores, substitutes illegal characters with underscores.\nData cleaning: Trims leading and trailing whitespace from all string values in the table.\nChange reporting: Returns a ChangeReport object summarizing all modifications made during loading and cleaning.\n\n\nCategorical and Datetime Validation\nEvaluates whether categorical and datetime columns in a DataFrame conform to predefined schemas to prevent errors in analysis and modeling.\n\nvalidate_categorical_schema(df, column, allowed_categories)\n\nChecks whether all non-missing values in a categorical column belong to a predefined set of allowed categories.\nIdentifies and reports invalid category values at the row level.\nReturns a pass/fail validation status along with a structured table of invalid records.\n\nvalidate_datetime_schema(df, columns, datetime_format, coerce_invalid=False)\n\nChecks whether datetime columns conform to a specified datetime format.\nIdentifies and reports invalid datetime values at the row level.\nOptionally (coerce_invalid=True) returns a copy of the DataFrame where valid values are converted to specified datetime type.\n\n\nNumeric EDA Plotting\nProvides a set of exploratory data analysis (EDA) focused on numeric columns. These functions will assist in quickly assessing distribution shapes, detect outliers and evaluate correlations\n\nplot_numeric_distributions(df)\n\nGenerates histogram‑based distribution plots for all numeric columns.\nHelps identify skewness, modality, and potential outliers across variables.\n\n\nNumeric value checks\nNumeric value checks ensure that numerical columns contain valid and meaningful values. These checks help detect outliers, impossible values, and violations of constraints that should logically apply to the data. - validate_numeric_column(df, column, min_value,max_value,allow_negative) - Verifys that numeric values fall within an expected range. - Detects negative values where they are not allowed - Identifies values that violate domain-specific boundaries.\nWhile standard libraries like Pandas provide tools to transform data, Datacure provides the rules to validate it. By focusing on data cleaning - structural integrity, column consistency, and value range constraints - it allows developers to build more resilient data pipelines with less boilerplate code.\n\n\nInstall the package form Test PyPI running the below command in your terminal:\npip install -i https://test.pypi.org/simple/ datacure\n\n\n\n\nClone the repository to your local machine by opening your terminal and run the following commands:\n\ngit clone https://github.com/UBC-MDS/DSCI_524_group20_datacure.git\ncd DSCI_524_group20_datacure\n\nCreate the conda environment from environment.yml:\n\nconda env create -f environment.yml\n\nActivate the environment:\n\nconda activate dsci_524_proj_env \n\n\n\nYou can install this package into your preferred Python environment using pip:\npip install -e .\n\n\n\nYou can run tests to validate all functions in the package using pytest:\npytest -v\n-v provides a verbose output showing the names of all tests and if they passed or not.\n\n\n\n\n\nThis option installs all required documentation dependencies automatically and builds the documentation:\nhatch run docs:build\n\n\n\nIf not already installed, you can install quarto from link. To generate the API reference pages and preview the documentation website run:\nquartodoc build --watch\nquarto preview\n\n\n\n\nimport pandas as pd\nfrom datacure import validate_datetime_schema\n\ndf = pd.DataFrame({\n    \"program\": [\"academic\", \"general\", \"unknown\"],\n    \"start_date\": [\"2023-01-01\", \"2023-02-01\", \"01-03-2023\"]\n})\n\n# Validate datetime format\nresult = validate_datetime_schema(\n    df,\n    columns=[\"start_date\"],\n    datetime_format=\"%Y-%m-%d\"\n)\n\n\n\n\nJose Davila\nSsemakula Peter Wasswa\nYanxin Liang\nShruti Sasi\n\n\n\n\n\nCopyright © 2026 Jose Davila , Ssemakula Peter Wasswa , Yanxin Liang , Shruti Sasi.\nFree software distributed under the MIT License."
   },
   {
     "objectID": "CONTRIBUTING.html",
@@ -278,5 +278,61 @@
     "title": "validate_datetime_schema.validate_datetime_schema",
     "section": "",
     "text": "Name\nType\nDescription\n\n\n\n\n\ndict\nA validation summary containing: - status : {‘pass’, ‘fail’} Overall validation status across all specified columns. 'pass' indicates that no invalid values were detected; 'fail' indicates that at least one invalid value was found. - validated_df : pandas.DataFrame A copy of the input DataFrame. If coerce_invalid=True, the specified datetime columns are converted to pandas datetime dtype (with invalid values set to NaT). - invalid_records : pandas.DataFrame A tidy DataFrame listing all invalid datetime values with columns: - index : index labels from df.index where validation failed - column : name of the datetime column containing the invalid value - raw_value : original value that failed validation An empty DataFrame indicates that no invalid values were detected."
+  },
+  {
+    "objectID": "index.html#setting-up-the-development-environment",
+    "href": "index.html#setting-up-the-development-environment",
+    "title": "Welcome to Datacure",
+    "section": "",
+    "text": "Clone the repository to your local machine by opening your terminal and run the following commands:\n\ngit clone https://github.com/UBC-MDS/DSCI_524_group20_datacure.git\ncd DSCI_524_group20_datacure\n\nCreate the conda environment from environment.yml:\n\nconda env create -f environment.yml\n\nActivate the environment:\n\nconda activate dsci_524_proj_env"
+  },
+  {
+    "objectID": "index.html#installing-the-package",
+    "href": "index.html#installing-the-package",
+    "title": "Welcome to Datacure",
+    "section": "",
+    "text": "You can install this package into your preferred Python environment using pip:\npip install -e ."
+  },
+  {
+    "objectID": "index.html#running-tests",
+    "href": "index.html#running-tests",
+    "title": "Welcome to Datacure",
+    "section": "",
+    "text": "You can run tests to validate all functions in the package using pytest:\npytest -v\n-v provides a verbose output showing the names of all tests and if they passed or not."
+  },
+  {
+    "objectID": "index.html#build-documentation",
+    "href": "index.html#build-documentation",
+    "title": "Welcome to Datacure",
+    "section": "",
+    "text": "This option installs all required documentation dependencies automatically and builds the documentation:\nhatch run docs:build\n\n\n\nIf not already installed, you can install quarto from link. To generate the API reference pages and preview the documentation website run:\nquartodoc build --watch\nquarto preview"
+  },
+  {
+    "objectID": "index.html#example-use",
+    "href": "index.html#example-use",
+    "title": "Welcome to Datacure",
+    "section": "",
+    "text": "import pandas as pd\nfrom datacure import validate_datetime_schema\n\ndf = pd.DataFrame({\n    \"program\": [\"academic\", \"general\", \"unknown\"],\n    \"start_date\": [\"2023-01-01\", \"2023-02-01\", \"01-03-2023\"]\n})\n\n# Validate datetime format\nresult = validate_datetime_schema(\n    df,\n    columns=[\"start_date\"],\n    datetime_format=\"%Y-%m-%d\"\n)"
+  },
+  {
+    "objectID": "index.html#contributors",
+    "href": "index.html#contributors",
+    "title": "Welcome to Datacure",
+    "section": "",
+    "text": "Jose Davila\nSsemakula Peter Wasswa\nYanxin Liang\nShruti Sasi"
+  },
+  {
+    "objectID": "index.html#copyright",
+    "href": "index.html#copyright",
+    "title": "Welcome to Datacure",
+    "section": "",
+    "text": "Copyright © 2026 Jose Davila , Ssemakula Peter Wasswa , Yanxin Liang , Shruti Sasi.\nFree software distributed under the MIT License."
+  },
+  {
+    "objectID": "index.html#installation-for-users",
+    "href": "index.html#installation-for-users",
+    "title": "Welcome to Datacure",
+    "section": "",
+    "text": "Install the package form Test PyPI running the below command in your terminal:\npip install -i https://test.pypi.org/simple/ datacure"
   }
 ]
