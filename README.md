@@ -108,19 +108,59 @@ quarto preview
 ## Example use:
 ``` python
 import pandas as pd
+from datacure import load_or_validate_source
 from datacure import validate_datetime_schema
+from datacure import validate_categorical_schema
+from datacure import validate_numeric_column
+from datacure import plots
 
 df = pd.DataFrame({
-    "program": ["academic", "general", "unknown"],
-    "start_date": ["2023-01-01", "2023-02-01", "01-03-2023"]
+    "#program": [" academic ", "general", "unknown", "special"],
+    "start date": ["2023-01-01", "2023-02-01", "01-03-2023", "2023/04/01"],
+    "duration": [12, 8, -5, 15]
 })
 
+# Load or Validate source
+df, report = load_or_validate_source.load_or_validate_source(
+    dataframe=df,
+    expected_min_cols=3
+)
+print("Loaded DataFrame:")
+print(df)
+print("Change Report:")
+print(report)
+
+# Validate categorial schema
+cat_result = validate_categorical_schema.validate_categorical_schema(
+    df,
+    column="program",
+    allowed_categories=["academic", "general", "unknown", "special"]
+)
+print("Categorical Validation Result:")
+print(cat_result)
+
 # Validate datetime format
-result = validate_datetime_schema(
+dt_result = validate_datetime_schema.validate_datetime_schema(
     df,
     columns=["start_date"],
     datetime_format="%Y-%m-%d"
 )
+print("Date Validation Result:")
+print(dt_result)
+
+# Validate numeric column
+num_result = validate_numeric_column.validate_numeric_column(
+    df,
+    column="duration",
+    min_value=0,
+    max_value=24,
+    allow_negative=False
+)
+print("Numeric Validation Result:")
+print(num_result)
+
+# Generate plots
+plots.plot_numeric_distributions(df)
 ```
 
 ## Contributors
