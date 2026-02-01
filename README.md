@@ -2,10 +2,11 @@
 
 |  |  |
 |------------------------------------|------------------------------------|
-| Package | [![Latest PyPI Version](https://img.shields.io/pypi/v/datacure.svg)](https://pypi.org/project/datacure/) [![Supported Python Versions](https://img.shields.io/pypi/pyversions/datacure.svg)](https://pypi.org/project/datacure/) |
+| Documentation | [![Docs](https://img.shields.io/badge/docs-gh--pages-blue)](https://ubc-mds.github.io/DSCI_524_group20_datacure/) |
+| CI/CD | [![CI](https://github.com/UBC-MDS/DSCI_524_group20_datacure/actions/workflows/build.yml/badge.svg)](https://github.com/UBC-MDS/DSCI_524_group20_datacure/actions/workflows/build.yml) [![codecov](https://codecov.io/github/ubc-mds/dsci_524_group20_datacure/branch/codecov_implementation/graph/badge.svg?token=qqHGXk6De9)](https://codecov.io/github/ubc-mds/dsci_524_group20_datacure)|
+| Package | [![Test PyPI Version](https://img.shields.io/badge/TestPyPI-datacure-orange)](https://test.pypi.org/project/datacure/) [![Supported Python Versions](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/) |
 | Meta | [![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md) |
 
-*TODO: the above badges that indicate python version and package version will only work if your package is on PyPI. If you don't plan to publish to PyPI, you can remove them.*
 
 Datacure is a project designed to streamline data validation and cleaning process. It provides a multi-layered approach moving from high-level structural checks to granular value-level verification to achieve data integrity. By catching data errors early, it ensures the datasets is model-ready.
 
@@ -13,7 +14,7 @@ Datacure is a project designed to streamline data validation and cleaning proces
 
 Robustly load and clean tabular data from either a CSV file (via a local path or URL) or an existing pandas DataFrame. Evaluates the overall structure of the DataFrame to prevent downstream failures
 
--   `load_or_validate_source`
+-   `load_or_validate_source(df, source, expected_min_cols, sample_size)`
     - Input flexibility: Accepts either a CSV file (from a local path or URL) or an existing pandas DataFrame.
     - Automatic delimiter detection: For CSVs, detects the delimiter using a sample of the file and handles common formatting issues.
     - Corruption checks: Identifies inconsistencies such as mismatched column counts and ensures the first row is a proper header rather than data.
@@ -56,6 +57,12 @@ Numeric value checks ensure that numerical columns contain valid and meaningful 
    
 While standard libraries like Pandas provide tools to transform data, **Datacure** provides the rules to validate it. By focusing on data cleaning - structural integrity, column consistency, and value range constraints - it allows developers to build more resilient data pipelines with less boilerplate code.
 
+## Installation for Users
+Install the package form Test PyPI running the below command in your terminal:
+```bash
+pip install -i https://test.pypi.org/simple/ datacure
+```
+
 ## Setting up the Development Environment
 1. Clone the repository to your local machine by opening your terminal and run the following commands:
 ``` bash
@@ -64,7 +71,7 @@ cd DSCI_524_group20_datacure
 ``` 
 2. Create the conda environment from `environment.yml`:
 ``` bash
-conda env create -f environment.yaml
+conda env create -f environment.yml
 ```
 3. Activate the environment:
 ``` bash
@@ -74,13 +81,13 @@ conda activate dsci_524_proj_env
 ## Installing the package
 You can install this package into your preferred Python environment using pip:
 ``` bash
-$ pip install -e .
+pip install -e .
 ```
 
 ## Running Tests
 You can run tests to validate all functions in the package using pytest:
 ``` bash
-$ pytest -v
+pytest -v
 ```
 -v provides a verbose output showing the names of all tests and if they passed or not.
 
@@ -91,7 +98,7 @@ This option installs all required documentation dependencies automatically and b
 hatch run docs:build
 ```
 ### Option 2 (Optional): Live preview locally (requires Quarto installed)
-If not already installed, you can install quarto from (here)[!https://quarto.org/docs/get-started/].
+If not already installed, you can install quarto from [link](https://quarto.org/docs/get-started/).
 To generate the API reference pages and preview the documentation website run:
 ``` bash
 quartodoc build --watch
