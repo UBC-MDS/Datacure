@@ -104,3 +104,45 @@ Before you submit a pull request, check that it meets these guidelines:
    new functionality into a function with a docstring.
 3. Your pull request will automatically be checked by the full test suite.
    It needs to pass all of them before it can be considered for merging.
+
+## Development Practices & Scaling Discussion
+
+### Development Tools Used 
+
+The project uses a set of development tools to support testing, documentation, and reliable collaboration throughout the development process.
+
+- **GitHub Actions**: Used for automated testing, documentation builds, and checks on every pull request.
+- **pytest**: Used as the testing framework with coverage tracking to ensure core functionality is well tested.
+- **Quarto and quartodoc**: Used to generate and maintain project documentation directly from source code and markdown files.
+- **Semantic versioning**: Used to communicate changes clearly and consistently across releases.
+
+### GitHub Infrastructure and Workflow
+
+GitHub provides the main infrastructure for collaboration, code review, and workflow automation in this project.
+
+- **GitHub Issues**: Used to track tasks, discussions, and design decisions.
+- **Pull Requests**: Used to propose changes, enable code review, and trigger automated checks before merging.
+- **Branching strategy**: A Git Flow–style workflow is followed, with a development branch used to integrate changes before merging into the main branch.
+- **CI workflows**: GitHub Actions workflows are used for automated testing and documentation, including separate workflows for documentation preview and final publication.
+
+### Organizational Practices
+
+The project follows collaborative development practices to improve code quality, maintainability, and team coordination. These practices help ensure that contributions are clear, reviewable, and consistent.
+
+- **Feature branches**: In milestone 4, changes are developed in feature branches to isolate work and reduce the risk of conflicts.
+- **Code review**: Pull requests are reviewed before merging to improve code quality.
+- **Commit and PR conventions**: Clear and descriptive commit messages and pull request descriptions are used to make changes easier to understand.
+- **Docstrings and tests**: Functions and tests include docstrings, and tests are written to verify core functionality and expected behavior.
+
+
+### Scaling Considerations
+
+If this project were to grow in scope or attract more contributors, additional tools and practices would be adopted to better manage complexity and collaboration. 
+
+- **Stricter pull request reviews**: With more contributors, requiring more thorough PR reviews.
+- **Issue templates and labels**: Using structured issue templates and consistent labels would improve issue tracking and make it easier to prioritize and manage tasks.
+- **Release notes and versioning**: Maintaining clear release notes alongside semantic versioning would help users understand changes and upgrades as the project evolves.
+- **Expanded CI pipelines**: As the codebase grows, CI workflows could be extended to include test matrices, coverage thresholds, and additional checks to reduce the risk of regressions.
+
+
+
