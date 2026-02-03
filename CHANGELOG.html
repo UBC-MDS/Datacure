@@ -91,10 +91,6 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./reference/index.html"> 
 <span class="menu-text">References</span></a>
   </li>  
@@ -116,8 +112,12 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#changelog" id="toc-changelog" class="nav-link active" data-scroll-target="#changelog">Changelog</a>
   <ul class="collapse">
-  <li><a href="#unreleased" id="toc-unreleased" class="nav-link" data-scroll-target="#unreleased">[Unreleased]</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">[0.1.0] - (1979-01-01)</a></li>
+  <li><a href="#unreleased" id="toc-unreleased" class="nav-link" data-scroll-target="#unreleased">[Unreleased]</a>
+  <ul class="collapse">
+  <li><a href="#added" id="toc-added" class="nav-link" data-scroll-target="#added">Added</a></li>
+  <li><a href="#fixed" id="toc-fixed" class="nav-link" data-scroll-target="#fixed">Fixed</a></li>
+  <li><a href="#changed" id="toc-changed" class="nav-link" data-scroll-target="#changed">Changed</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -134,17 +134,28 @@ ul.task-list li input[type="checkbox"] {
 <p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>, and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
 <section id="unreleased" class="level2">
 <h2 class="anchored" data-anchor-id="unreleased">[Unreleased]</h2>
+<section id="added" class="level3">
+<h3 class="anchored" data-anchor-id="added">Added</h3>
 <ul>
-<li>Upcoming features and fixes</li>
+<li>Added usage examples to multiple package functions, addressing peer feedback and improving usability.</li>
+<li>Added a new section to the README to provide clearer guidance on how to install and use the package based on TA feedback.</li>
 </ul>
 </section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section">[0.1.0] - (1979-01-01)</h2>
+<section id="fixed" class="level3">
+<h3 class="anchored" data-anchor-id="fixed">Fixed</h3>
 <ul>
-<li>First release</li>
+<li>Fixed errors that prevented tests from running correctly.</li>
+<li>Added missing docstring descriptions to test files to improve clarity and maintainability based on TA feedback.</li>
+</ul>
+</section>
+<section id="changed" class="level3">
+<h3 class="anchored" data-anchor-id="changed">Changed</h3>
+<ul>
+<li>Removed unnecessary branches and files to improve repository organization and maintain a cleaner project layout, based on peer feedback.</li>
 </ul>
 
 
+</section>
 </section>
 </section>
 
